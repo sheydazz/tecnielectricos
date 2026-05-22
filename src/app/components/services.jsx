@@ -1,75 +1,136 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card"
 import { Button } from "./ui/button"
-import { Badge } from "./ui/badge"
-import { AirVent, Wrench, Wind, Cable, Lightbulb, ShieldCheck, Blinds, Tv, Armchair, Check } from "lucide-react"
+import {
+  LayoutGrid,
+  AlertTriangle,
+  Cable,
+  Plug,
+  Lightbulb,
+  Zap,
+  ShieldCheck,
+  PanelTop,
+  Activity,
+  Cog,
+  FileCheck,
+  Wrench,
+  AirVent,
+  Check,
+  ExternalLink,
+  Home,
+  Factory,
+  Send,
+  X,
+} from "lucide-react"
 
 const services = [
   {
-    id: "instalacion-ac",
-    category: "Refrigeración",
-    title: "Instalación de Aires Acondicionado",
-    description: "Instalación profesional de sistemas de aire acondicionado residencial y comercial",
-    icon: <AirVent className="w-8 h-8" />,
+    id: "tablero-electrico",
+    categories: ["Residencial", "Industrial"],
+    title: "Mantenimiento de Tablero Eléctrico",
+    description: "Revisión, ajuste y mantenimiento de tableros para garantizar operación segura",
+    icon: LayoutGrid,
   },
   {
-    id: "mantenimiento",
-    category: "Refrigeración",
-    title: "Mantenimiento Preventivo y Correctivo",
-    description: "Servicio completo de mantenimiento para prolongar la vida útil de su equipo",
-    icon: <Wrench className="w-8 h-8" />,
+    id: "sobrecargas",
+    categories: ["Residencial", "Industrial"],
+    title: "Sobrecargas",
+    description: "Diagnóstico y corrección de sobrecargas en circuitos y equipos eléctricos",
+    icon: AlertTriangle,
   },
   {
-    id: "fugas-gas",
-    category: "Refrigeración",
-    title: "Fugas, Inyección de Gas, Ducterías",
-    description: "Detección y reparación de fugas, recarga de gas refrigerante y mantenimiento de ductos",
-    icon: <Wind className="w-8 h-8" />,
+    id: "instalaciones-electricas",
+    categories: ["Residencial", "Industrial"],
+    title: "Instalaciones Eléctricas",
+    description: "Instalación de sistemas eléctricos nuevos y ampliaciones con norma técnica",
+    icon: Cable,
   },
   {
-    id: "tableros",
-    category: "Electricidad",
-    title: "Instalación de Tableros Eléctricos",
-    description: "Tableros monofásicos, bifásicos y trifásicos para uso residencial y comercial",
-    icon: <Cable className="w-8 h-8" />,
+    id: "tomas",
+    categories: ["Residencial", "Industrial"],
+    title: "Revisión y Cambio de Tomas",
+    description: "Inspección, reparación y reemplazo de tomas eléctricas dañadas o antiguas",
+    icon: Plug,
   },
   {
-    id: "puesta-tierra",
-    category: "Electricidad",
-    title: "Sistema Puesta a Tierra",
-    description: "Instalación de sistemas de puesta a tierra para protección eléctrica",
-    icon: <ShieldCheck className="w-8 h-8" />,
+    id: "lamparas",
+    categories: ["Residencial", "Industrial"],
+    title: "Revisión y Cambio de Lámparas",
+    description: "Mantenimiento y cambio de luminarias en interiores y exteriores",
+    icon: Lightbulb,
   },
   {
-    id: "circuitos",
-    category: "Electricidad",
-    title: "Instalación de Circuitos Eléctricos",
-    description: "Diseño e instalación de circuitos eléctricos seguros y eficientes",
-    icon: <Lightbulb className="w-8 h-8" />,
+    id: "instalaciones-led",
+    categories: ["Residencial", "Industrial"],
+    title: "Instalaciones LED",
+    description: "Iluminación LED eficiente para hogares, locales y espacios industriales",
+    icon: Zap,
   },
   {
-    id: "persianas",
-    category: "Instalación Varia",
-    title: "Instalación de Persianas",
-    description: "Instalación profesional de persianas y cortinas para su hogar u oficina",
-    icon: <Blinds className="w-8 h-8" />,
+    id: "breakers",
+    categories: ["Residencial", "Industrial"],
+    title: "Revisión y Cambio de Breakers",
+    description: "Prueba, ajuste y reemplazo de breakers para protección del circuito",
+    icon: ShieldCheck,
   },
   {
-    id: "bases-tv",
-    category: "Instalación Varia",
-    title: "Instalación de Bases para Televisor",
-    description: "Montaje seguro de soportes y bases para televisores en pared",
-    icon: <Tv className="w-8 h-8" />,
+    id: "cuadros-electricos",
+    categories: ["Residencial", "Industrial"],
+    title: "Cuadros Eléctricos",
+    description: "Instalación y mantenimiento de cuadros de distribución eléctrica",
+    icon: PanelTop,
   },
   {
-    id: "muebles",
-    category: "Instalación Varia",
-    title: "Instalación de Todo Tipo de Muebles",
-    description: "Armado e instalación de muebles y repisas para su espacio",
-    icon: <Armchair className="w-8 h-8" />,
+    id: "corrientes-parasitas",
+    categories: ["Residencial", "Industrial"],
+    title: "Revisión de Corrientes Parásitas",
+    description: "Detección de fugas y corrientes parásitas que afectan su consumo y seguridad",
+    icon: Activity,
   },
+  {
+    id: "motobomba",
+    categories: ["Industrial"],
+    title: "Mantenimiento de Motobomba",
+    description: "Servicio preventivo y correctivo de motobombas industriales y comerciales",
+    icon: Cog,
+  },
+  {
+    id: "motores-electricos",
+    categories: ["Industrial"],
+    title: "Revisión de Motores Eléctricos",
+    description: "Diagnóstico y mantenimiento de motores eléctricos en planta industrial",
+    icon: Wrench,
+  },
+  {
+    id: "certificaciones",
+    categories: ["Industrial"],
+    title: "Certificaciones Eléctricas",
+    description: "Certificación y cumplimiento normativo de instalaciones eléctricas industriales",
+    icon: FileCheck,
+  },
+  {
+    id: "armado-tableros",
+    categories: ["Industrial"],
+    title: "Armado de Tableros Eléctricos",
+    description: "Diseño y armado de tableros eléctricos a medida para su operación industrial",
+    icon: LayoutGrid,
+  },
+  {
+    id: "aires-acondicionados",
+    categories: ["Refrigeración"],
+    title: "Revisión de Aires Acondicionados",
+    description: "Refrigeración en refrielectricos.com — sitio aliado",
+    icon: AirVent,
+    externalLink: "https://refrielectricos.com",
+  },
+]
+
+const categories = [
+  { id: "Todos", icon: Zap },
+  { id: "Residencial", icon: Home },
+  { id: "Industrial", icon: Factory },
+  { id: "Refrigeración", icon: AirVent },
 ]
 
 export function Services() {
@@ -77,30 +138,29 @@ export function Services() {
   const [filter, setFilter] = useState("Todos")
   const [isInContactSection, setIsInContactSection] = useState(false)
 
-  const categories = ["Todos", "Refrigeración", "Electricidad", "Instalación Varia"]
+  const filteredServices =
+    filter === "Todos" ? services : services.filter((s) => s.categories.includes(filter))
 
-  const filteredServices = filter === "Todos" ? services : services.filter((s) => s.category === filter)
-
-  // Detectar cuando el usuario está en la sección de contacto
   useEffect(() => {
     const handleScroll = () => {
-      const contactSection = document.getElementById('contacto')
+      const contactSection = document.getElementById("contacto")
       if (contactSection) {
         const rect = contactSection.getBoundingClientRect()
-        const isVisible = rect.top < window.innerHeight && rect.bottom > 0
-        setIsInContactSection(isVisible)
+        setIsInContactSection(rect.top < window.innerHeight && rect.bottom > 0)
       }
     }
-
-    window.addEventListener('scroll', handleScroll)
-    handleScroll() // Verificar estado inicial
-
-    return () => window.removeEventListener('scroll', handleScroll)
+    window.addEventListener("scroll", handleScroll)
+    handleScroll()
+    return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const toggleService = (serviceId) => {
+  const toggleService = (service) => {
+    if (service.externalLink) {
+      window.open(service.externalLink, "_blank", "noopener,noreferrer")
+      return
+    }
     setSelectedServices((prev) =>
-      prev.includes(serviceId) ? prev.filter((id) => id !== serviceId) : [...prev, serviceId],
+      prev.includes(service.id) ? prev.filter((id) => id !== service.id) : [...prev, service.id],
     )
   }
 
@@ -109,175 +169,176 @@ export function Services() {
       alert("Por favor selecciona al menos un servicio")
       return
     }
-
-    const selectedServiceNames = services
+    const names = services
       .filter((s) => selectedServices.includes(s.id))
       .map((s) => s.title)
       .join("\n• ")
-
-    // Crear mensaje personalizado para WhatsApp
-    const message = `¡Hola! Me interesan los siguientes servicios:\n\n• ${selectedServiceNames}\n\nPor favor, contáctame para más información.`
-    
-    // Codificar el mensaje para URL
-    const encodedMessage = encodeURIComponent(message)
-    
-    // Número de WhatsApp: 57 312 2140141
-    const whatsappNumber = "573122140141"
-    
-    // Crear URL de WhatsApp
-    const whatsappUrl = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodedMessage}`
-    
-    // Abrir WhatsApp en una nueva ventana
-    window.open(whatsappUrl, '_blank')
+    const message = `¡Hola! Me interesan los siguientes servicios de Soluciones Eléctricas de la Costa:\n\n• ${names}\n\nPor favor, contáctame para más información.`
+    window.open(
+      `https://api.whatsapp.com/send?phone=573122140141&text=${encodeURIComponent(message)}`,
+      "_blank",
+    )
   }
 
   return (
-    <section id="servicios" className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-br from-muted/20 via-background to-muted/30 relative overflow-hidden">
-      {/* Elementos decorativos de fondo */}
-      <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-accent/5 pointer-events-none" />
-      <div className="absolute top-0 left-1/4 w-72 h-72 bg-primary/10 rounded-full blur-3xl opacity-30" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl opacity-20" />
-      
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="max-w-4xl mx-auto text-center mb-8 sm:mb-10 md:mb-12 animate-fade-in">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 text-balance leading-tight bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-            Nuestros Servicios Profesionales
-          </h2>
-          <p className="text-base sm:text-lg text-muted-foreground text-pretty leading-relaxed px-2">
-            <span className="font-semibold text-primary">Haz clic en los servicios</span> que necesitas y te contactaremos de inmediato
-          </p>
-          <div className="mt-4 inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full text-sm text-primary font-medium">
-            <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
-            Los servicios son seleccionables
-          </div>
-        </div>
+    <section id="servicios" className="py-14 sm:py-20 bg-[#fafafa]">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+          {/* Sidebar — no pills centrados como el sitio original */}
+          <aside className="lg:w-56 shrink-0">
+            <div className="lg:sticky lg:top-24">
+              <p className="text-xs font-bold uppercase tracking-widest text-orange-600 mb-1">Catálogo</p>
+              <h2 className="text-2xl font-extrabold text-neutral-900 mb-1">Servicios</h2>
+              <p className="text-sm text-neutral-500 mb-6 hidden lg:block">
+                Clic en cada fila para agregar a tu solicitud.
+              </p>
 
-        <div className="flex flex-wrap gap-2 sm:gap-3 justify-center mb-6 sm:mb-8 px-2 animate-slide-up">
-          {categories.map((category, index) => (
-            <Button
-              key={category}
-              onClick={() => setFilter(category)}
-              className={`rounded-full text-xs sm:text-sm px-3 sm:px-4 py-2 sm:py-2.5 transition-all duration-300 hover:scale-105 ${
-                filter === category 
-                  ? "gradient-accent text-white shadow-elegant hover:shadow-elegant-lg pulse-glow" 
-                  : "bg-white/80 backdrop-blur-sm border-gray-300 text-gray-700 hover:bg-gradient-to-r hover:from-primary/10 hover:to-accent/10 hover:border-primary/30 hover:text-primary shadow-elegant hover:shadow-elegant-lg"
-              }`}
-              style={{ animationDelay: `${index * 0.05}s` }}
-            >
-              {category}
-            </Button>
-          ))}
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
-          {filteredServices.map((service, index) => {
-            const isSelected = selectedServices.includes(service.id)
-
-            return (
-              <Card
-                key={service.id}
-                className={`cursor-pointer transition-all duration-300 hover-lift hover-glow group relative overflow-hidden ${
-                  isSelected 
-                    ? "ring-2 ring-primary shadow-elegant-lg bg-gradient-to-br from-primary/5 to-accent/5" 
-                    : "shadow-elegant bg-white/80 backdrop-blur-sm hover:bg-gradient-to-br hover:from-primary/5 hover:to-accent/5 hover:ring-1 hover:ring-primary/30"
-                }`}
-                onClick={() => toggleService(service.id)}
-                style={{ 
-                  animationDelay: `${index * 0.05}s`,
-                  animationName: 'slideUp',
-                  animationDuration: '0.4s',
-                  animationTimingFunction: 'ease-out',
-                  animationFillMode: 'forwards'
-                }}
-              >
-                {/* Efecto de brillo en hover - optimizado para móviles */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500" />
-                
-                <CardHeader className="pb-3 relative z-10">
-                  <div className="flex items-start justify-between mb-2">
-                    <div className={`p-2.5 sm:p-3 rounded-lg transition-all duration-300 ${
-                      isSelected 
-                        ? "gradient-primary text-white shadow-elegant" 
-                        : "bg-gradient-to-br from-muted to-muted/50 group-hover:from-primary/10 group-hover:to-accent/10"
-                    }`}>
-                      <div className="w-6 h-6 sm:w-8 sm:h-8 transition-transform duration-300 group-hover:scale-110">
-                        {service.icon}
-                      </div>
-                    </div>
-                    {isSelected ? (
-                      <div className="gradient-accent text-white rounded-full p-1 shadow-elegant animate-fade-in">
-                        <Check className="w-4 h-4 sm:w-5 sm:h-5" />
-                      </div>
-                    ) : (
-                      <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 border-dashed border-primary/30 group-hover:border-primary/60 group-hover:bg-primary/5 transition-all duration-300 flex items-center justify-center">
-                        <div className="w-2 h-2 bg-primary/40 rounded-full group-hover:bg-primary/60 transition-colors duration-300"></div>
-                      </div>
-                    )}
-                  </div>
-                  <Badge 
-                    variant="secondary" 
-                    className={`w-fit mb-2 text-xs transition-all duration-300 ${
-                      isSelected 
-                        ? "bg-primary/20 text-primary border-primary/30" 
-                        : "bg-muted/50 group-hover:bg-primary/10 group-hover:text-primary group-hover:border-primary/30"
+              <nav className="flex lg:flex-col gap-2 overflow-x-auto pb-2 lg:pb-0 lg:overflow-visible scrollbar-hide">
+                {categories.map(({ id, icon: Icon }) => (
+                  <button
+                    key={id}
+                    type="button"
+                    onClick={() => setFilter(id)}
+                    className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium whitespace-nowrap transition-all shrink-0 ${
+                      filter === id
+                        ? "bg-orange-600 text-white shadow-md"
+                        : "bg-white text-neutral-700 border border-neutral-200 hover:border-orange-300 hover:text-orange-600"
                     }`}
                   >
-                    {service.category}
-                  </Badge>
-                  <CardTitle className="text-lg sm:text-xl text-balance leading-tight transition-colors duration-300 group-hover:text-primary">
-                    {service.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="pt-0 relative z-10">
-                  <CardDescription className="text-sm sm:text-base text-pretty leading-relaxed transition-colors duration-300 group-hover:text-foreground/80">
-                    {service.description}
-                  </CardDescription>
-                </CardContent>
-              </Card>
-            )
-          })}
-        </div>
+                    <Icon className="w-4 h-4" />
+                    {id}
+                  </button>
+                ))}
+              </nav>
 
-        {selectedServices.length === 0 && (
-          <div className="text-center py-8 animate-fade-in">
-            <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary/10 to-accent/10 rounded-full text-sm font-medium text-primary border border-primary/20">
-              <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
-              Haz clic en cualquier servicio para seleccionarlo
+              {selectedServices.length > 0 && (
+                <div className="hidden lg:block mt-8 p-4 bg-white rounded-xl border-2 border-orange-200 shadow-sm">
+                  <p className="text-xs font-bold text-orange-600 uppercase tracking-wide mb-2">Tu selección</p>
+                  <p className="text-2xl font-black text-neutral-900">{selectedServices.length}</p>
+                  <p className="text-xs text-neutral-500 mb-3">
+                    {selectedServices.length === 1 ? "servicio" : "servicios"}
+                  </p>
+                  <Button onClick={handleRequestServices} className="w-full gradient-primary text-white text-sm">
+                    <Send className="w-3.5 h-3.5 mr-1.5" />
+                    Enviar
+                  </Button>
+                </div>
+              )}
+            </div>
+          </aside>
+
+          {/* Lista horizontal — no grid 3 columnas */}
+          <div className="flex-1 min-w-0">
+            <p className="text-sm text-neutral-500 mb-4 lg:hidden">
+              Toca un servicio para seleccionarlo
+            </p>
+
+            <ul className="space-y-3">
+              {filteredServices.map((service) => {
+                const isSelected = selectedServices.includes(service.id)
+                const isExternal = Boolean(service.externalLink)
+                const Icon = service.icon
+
+                return (
+                  <li key={service.id}>
+                    <button
+                      type="button"
+                      onClick={() => toggleService(service)}
+                      className={`w-full text-left flex items-stretch gap-0 rounded-xl overflow-hidden border transition-all duration-200 group ${
+                        isSelected
+                          ? "border-orange-400 bg-white shadow-md ring-2 ring-orange-200"
+                          : "border-neutral-200 bg-white hover:border-orange-300 hover:shadow-sm"
+                      }`}
+                    >
+                      <div
+                        className={`w-1.5 shrink-0 ${
+                          isSelected ? "bg-orange-500" : "bg-neutral-200 group-hover:bg-orange-300"
+                        }`}
+                      />
+                      <div className="flex flex-1 items-center gap-4 p-4 min-w-0">
+                        <div
+                          className={`w-12 h-12 rounded-lg flex items-center justify-center shrink-0 ${
+                            isSelected
+                              ? "gradient-primary text-white"
+                              : "bg-orange-50 text-orange-600"
+                          }`}
+                        >
+                          <Icon className="w-6 h-6" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex flex-wrap gap-1.5 mb-1">
+                            {service.categories.map((cat) => (
+                              <span
+                                key={cat}
+                                className="text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded bg-neutral-100 text-neutral-600"
+                              >
+                                {cat}
+                              </span>
+                            ))}
+                          </div>
+                          <p className="font-bold text-neutral-900 text-sm sm:text-base leading-snug">
+                            {service.title}
+                          </p>
+                          <p className="text-xs sm:text-sm text-neutral-500 mt-0.5 line-clamp-2">
+                            {service.description}
+                          </p>
+                          {isExternal && (
+                            <span className="inline-flex items-center gap-1 text-xs text-orange-600 font-medium mt-1">
+                              <ExternalLink className="w-3 h-3" />
+                              refrielectricos.com
+                            </span>
+                          )}
+                        </div>
+                        <div className="shrink-0 self-center pr-1">
+                          {isExternal ? (
+                            <ExternalLink className="w-5 h-5 text-neutral-400" />
+                          ) : isSelected ? (
+                            <div className="w-8 h-8 rounded-full gradient-primary flex items-center justify-center">
+                              <Check className="w-4 h-4 text-white" />
+                            </div>
+                          ) : (
+                            <div className="w-8 h-8 rounded-full border-2 border-dashed border-neutral-300 group-hover:border-orange-400" />
+                          )}
+                        </div>
+                      </div>
+                    </button>
+                  </li>
+                )
+              })}
+            </ul>
+
+            {filteredServices.length === 0 && (
+              <p className="text-center text-neutral-500 py-12">No hay servicios en esta categoría.</p>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Barra móvil / cuando no está en contacto */}
+      {selectedServices.length > 0 && !isInContactSection && (
+        <div className="fixed bottom-0 left-0 right-0 z-40 lg:hidden animate-slide-up">
+          <div className="bg-neutral-900 text-white px-4 py-3 flex items-center justify-between gap-3 safe-area-pb">
+            <div>
+              <p className="text-xs text-orange-300 font-medium">Seleccionados</p>
+              <p className="font-bold">{selectedServices.length} servicios</p>
+            </div>
+            <div className="flex gap-2">
+              <button
+                type="button"
+                onClick={() => setSelectedServices([])}
+                className="p-2 rounded-lg bg-white/10"
+                aria-label="Limpiar"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              <Button onClick={handleRequestServices} className="gradient-primary text-white font-semibold px-5">
+                <Send className="w-4 h-4 mr-1.5" />
+                WhatsApp
+              </Button>
             </div>
           </div>
-        )}
-
-        {selectedServices.length > 0 && !isInContactSection && (
-          <div className="fixed bottom-4 sm:bottom-6 left-4 sm:left-1/2 sm:-translate-x-1/2 right-4 sm:right-auto z-40 animate-fade-in">
-            <Card className="shadow-elegant-lg border-2 border-primary/20 bg-white/95 backdrop-blur-sm hover:shadow-elegant-lg transition-all duration-300">
-              <CardContent className="p-3 sm:p-4">
-                <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
-                  <div className="text-xs sm:text-sm font-medium text-center sm:text-left bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                    {selectedServices.length}{" "}
-                    {selectedServices.length === 1 ? "servicio seleccionado" : "servicios seleccionados"}
-                  </div>
-                  <div className="flex gap-2 w-full sm:w-auto">
-                    <Button 
-                      onClick={handleRequestServices} 
-                      className="gradient-accent hover:shadow-elegant-lg text-accent-foreground text-xs sm:text-sm px-3 sm:px-4 py-2 flex-1 sm:flex-none transition-all duration-300 hover:scale-105"
-                    >
-                      Solicitar Servicios
-                    </Button>
-                    <Button 
-                      variant="ghost" 
-                      size="sm" 
-                      onClick={() => setSelectedServices([])}
-                      className="text-xs sm:text-sm px-3 sm:px-4 py-2 hover:bg-primary/10 hover:text-primary transition-all duration-300"
-                    >
-                      Limpiar
-                    </Button>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        )}
-      </div>
+        </div>
+      )}
     </section>
   )
 }

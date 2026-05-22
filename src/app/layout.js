@@ -11,25 +11,25 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 export const metadata = {
-  title: "REFRIELECTRICOS ATLÁNTICO - Servicios de Refrigeración y Electricidad",
-  description: "Servicios profesionales de refrigeración y electricidad en Barranquilla, Soledad y todo el Atlántico. Instalación, mantenimiento y reparación de aires acondicionados, sistemas eléctricos. ¡Llámanos ahora!",
-  keywords: "refrigeración Barranquilla, electricidad Soledad, aire acondicionado Atlántico, instalación refrigeración, mantenimiento eléctrico, reparación aires acondicionados, técnicos refrigeración, electricistas Barranquilla, servicios eléctricos, refrigeración comercial",
-  authors: [{ name: "REFRIELECTRICOS ATLÁNTICO", url: "https://refrielectricos.com" }],
+  title: "Electricista en el Atlántico | Soluciones Eléctricas de la Costa - Barranquilla y Soledad",
+  description:
+    "¿Buscas un electricista en el Atlántico? Soluciones Eléctricas de la Costa atiende Barranquilla, Soledad y toda la región. Mantenimiento eléctrico residencial e industrial, tableros, breakers e instalaciones LED. ¡Contáctanos!",
+  keywords:
+    "electricista en el atlántico, electricista Barranquilla, electricista Soledad, buscar electricista atlántico, mantenimiento eléctrico Barranquilla, electricista cerca de mí atlántico, instalaciones eléctricas costa caribe, tableros eléctricos, Soluciones Eléctricas de la Costa",
+  authors: [{ name: "Soluciones Eléctricas de la Costa" }],
   robots: "index, follow",
   openGraph: {
-    title: "REFRIELECTRICOS ATLÁNTICO - Refrigeración y Electricidad",
-    description: "Servicios profesionales de refrigeración y electricidad en Barranquilla, Soledad y todo el Atlántico. Instalación, mantenimiento y reparación.",
+    title: "Electricista en el Atlántico | Soluciones Eléctricas de la Costa",
+    description:
+      "Electricista en Barranquilla, Soledad y el Atlántico. Mantenimiento eléctrico residencial e industrial. Contáctanos.",
     type: "website",
     locale: "es_CO",
-    siteName: "REFRIELECTRICOS ATLÁNTICO",
+    siteName: "Soluciones Eléctricas de la Costa",
   },
   twitter: {
     card: "summary_large_image",
-    title: "REFRIELECTRICOS ATLÁNTICO",
-    description: "Servicios profesionales de refrigeración y electricidad en el Atlántico",
-  },
-  alternates: {
-    canonical: "https://refrielectricos.com",
+    title: "Soluciones Eléctricas de la Costa",
+    description: "Electricista en el Atlántico — Barranquilla, Soledad y Costa Caribe",
   },
   icons: {
     icon: '/favicon.ico',
@@ -51,7 +51,7 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/favicon.ico" />
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/favicon.ico" />
-        <meta name="theme-color" content="#1e40af" />
+        <meta name="theme-color" content="#ea580c" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="format-detection" content="telephone=no" />
@@ -72,10 +72,10 @@ export default function RootLayout({ children }) {
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
-            "name": "REFRIELECTRICOS ATLÁNTICO",
-            "description": "Servicios profesionales de refrigeración y electricidad en Barranquilla, Soledad y todo el Atlántico",
-            "url": "https://refrielectricos.com",
-            "telephone": "+57-XXX-XXX-XXXX",
+            "name": "Soluciones Eléctricas de la Costa",
+            "description": "Electricista en el Atlántico, Colombia. Servicios eléctricos residenciales e industriales en Barranquilla, Soledad y la Costa Caribe.",
+            "telephone": "+57-312-2140141",
+            "areaServed": ["Barranquilla", "Soledad", "Malambo", "Atlántico", "Colombia"],
             "address": {
               "@type": "PostalAddress",
               "addressLocality": "Barranquilla",
@@ -99,27 +99,27 @@ export default function RootLayout({ children }) {
             },
             "hasOfferCatalog": {
               "@type": "OfferCatalog",
-              "name": "Servicios de Refrigeración y Electricidad",
+              "name": "Servicios Eléctricos Residenciales e Industriales",
               "itemListElement": [
                 {
                   "@type": "Offer",
                   "itemOffered": {
                     "@type": "Service",
-                    "name": "Instalación de Aires Acondicionados"
+                    "name": "Mantenimiento de Tablero Eléctrico"
                   }
                 },
                 {
                   "@type": "Offer",
                   "itemOffered": {
                     "@type": "Service",
-                    "name": "Mantenimiento de Sistemas Eléctricos"
+                    "name": "Instalaciones Eléctricas y LED"
                   }
                 },
                 {
                   "@type": "Offer",
                   "itemOffered": {
                     "@type": "Service",
-                    "name": "Reparación de Refrigeración"
+                    "name": "Certificaciones y Tableros Industriales"
                   }
                 }
               ]
