@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "Electricista en el Atlántico | Soluciones Eléctricas de la Costa - Barranquilla y Soledad",
   description:
-    "¿Buscas un electricista en el Atlántico? Soluciones Eléctricas de la Costa atiende Barranquilla, Soledad y toda la región. Mantenimiento eléctrico residencial e industrial, tableros, breakers e instalaciones LED. ¡Contáctanos!",
+    "¿Buscas un electricista en el Atlántico? Soluciones Eléctricas de la Costa atiende Barranquilla, Soledad y toda la región. Mantenimiento eléctrico residencial e industrial, paneles solares, tableros, breakers e instalaciones LED. ¡Contáctanos!",
   keywords:
-    "electricista en el atlántico, electricista Barranquilla, electricista Soledad, buscar electricista atlántico, mantenimiento eléctrico Barranquilla, electricista cerca de mí atlántico, instalaciones eléctricas costa caribe, tableros eléctricos, Soluciones Eléctricas de la Costa",
+    "electricista en el atlántico, electricista Barranquilla, electricista Soledad, buscar electricista atlántico, mantenimiento eléctrico Barranquilla, electricista cerca de mí atlántico, instalaciones eléctricas costa caribe, paneles solares Barranquilla, sistemas fotovoltaicos, tableros eléctricos, Soluciones Eléctricas de la Costa",
   authors: [{ name: "Soluciones Eléctricas de la Costa" }],
   robots: "index, follow",
   openGraph: {
@@ -113,6 +113,13 @@ export default function RootLayout({ children }) {
                   "itemOffered": {
                     "@type": "Service",
                     "name": "Instalaciones Eléctricas y LED"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Instalación y Mantenimiento de Paneles Solares y Sistemas Fotovoltaicos"
                   }
                 },
                 {

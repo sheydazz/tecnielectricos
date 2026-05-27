@@ -9,6 +9,7 @@ import {
   Plug,
   Lightbulb,
   Zap,
+  Sun,
   ShieldCheck,
   PanelTop,
   Activity,
@@ -66,6 +67,14 @@ const services = [
     title: "Instalaciones LED",
     description: "Iluminación LED eficiente para hogares, locales y espacios industriales",
     icon: Zap,
+  },
+  {
+    id: "paneles-solares",
+    categories: ["Residencial", "Industrial"],
+    title: "Paneles Solares y Sistemas Fotovoltaicos",
+    description:
+      "Instalación y mantenimiento de paneles solares para casas, empresas y plantas industriales",
+    icon: Sun,
   },
   {
     id: "breakers",
